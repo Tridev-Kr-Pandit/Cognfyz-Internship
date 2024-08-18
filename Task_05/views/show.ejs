@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cognifyz Internship</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        .row {
+            /* width: 500px; */
+            margin-top: 50px;
+            background-color: aqua;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <%- include('components/navbar.ejs')%>
+        <div class="container">
+            <div class="col-5 mx-auto row">
+                <h1 class="text-center my-3">Welcome <%= data.name %>
+                </h1>
+                <div class="">
+                    <h3 class="">Your id: <%= data._id %>
+                    </h3>
+                    <h3 class="">Your Name: <%= data.name %>
+                    </h3>
+                    <h3 class="">Your Email: <%= data.email %>
+                    </h3>
+                    <h3 class="">Your Age: <%= data.age %>
+                    </h3>
+                    <h3 class="">Your Phone: <%= data.phone %>
+                    </h3>
+                    <!-- <h3 class="">Your password: <%= data.password %> -->
+                    </h3>
+                    <h3 class="">Created At: <%= data.createdAt %>
+                    </h3>
+                    <h3 class="">Updated At: <%= data.updatedAt %>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <%- include('components/footer.ejs')%>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cognifyz Internship</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <%- include('./components/navbar.ejs') %>
+    <div class="container-fluid ">
+        <div class="row  mx-auto mt-3 col-sm-7 col-md-4 mb-3">
+            <h1 class="text-center py-3 bg-dark text-light rounded fw-bold">Student Registration</h1>
+            <form method="post" action="/api/students/addStudent" onsubmit="return validate()">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Name:</label>
+                    <input id="s_name" placeholder="Enter your Name" type="text" class="form-control"
+                        aria-describedby="emailHelp" name="name">
+                    <p class="text-danger ms-2"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Email:</label>
+                    <input id="s_email" placeholder="Enter your Email" type="email" class="form-control" name="email">
+                    <p class="text-danger ms-2"></p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Age:</label>
+                    <input id="s_age" placeholder="Enter your Age" type="number" class="form-control" name="age">
+                    <p class="text-danger ms-2"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Phone No:</label>
+                    <input id="s_phone" placeholder="Enter your Phone No." type="number" class="form-control" name="phone">
+                    <p class="text-danger ms-2"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password:</label>
+                    <input id="password" placeholder="Create a Password" type="password" class="form-control"
+                        name="password">
+                    <p class="text-danger ms-2"></p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Confirm Password:</label>
+                    <input id="c_password" placeholder="Confirm Password" type="password" class="form-control"
+                        name="c_password">
+                    <p class="text-danger ms-2"></p>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2 fw-bold fs-5">Register</button>
+            </form>
+        </div>
+
+    </div>
+    <%- include('./components/footer.ejs') %> 
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+<script>
+    let name = document.getElementById('s_name');
+    let email = document.getElementById('s_email');
+    let age = document.getElementById('s_age');
+    let password = document.getElementById('password');
+    let c_password = document.getElementById('c_password');
+
+
+    function validate(){
+        let nameValidate = validateName();
+        let emailValidate = validateEmail();
+        let ageValidate = validateAge();
+        let passwordValidate = validatePassword();
+        let c_passwordValidate = validateC_password();
+
+        return nameValidate && emailValidate && ageValidate && passwordValidate && c_passwordValidate;
+    }
+
+    function validateName() {
+        let flag = true;
+        if (name.value === "") {
+            name.nextElementSibling.innerHTML = "student name is empty!"
+            flag = false;
+        } else if (name.value.length < 3) {
+            name.nextElementSibling.innerHTML = "Minimum three letters required"
+            flag = false;
+        } else {
+            flag = true;
+            name.nextElementSibling.innerHTML = ""
+        }
+        return flag
+    }
+
+    function validateEmail() {
+        if (email.value === "") {
+            email.nextElementSibling.innerHTML = "Email is required"
+            return false;
+        }
+        return true;
+    }
+
+    function validateAge() {
+      if (age.value < 18) {
+        age.nextElementSibling.innerHTML = "Age must be equal or greater than 18"
+        return false;
+      }
+      return true;
+    }
+
+    function validatePassword() {
+      let flag = true;
+      if (password.value === "") {
+        password.nextElementSibling.innerHTML = "password is empty!"
+        flag = false;
+      } else if (password.value.length < 8) {
+        password.nextElementSibling.innerHTML = "Minimum eight digits required";
+        flag = false;
+      } else {
+        flag = true;
+        password.nextElementSibling.innerHTML = "";
+      }
+
+      return flag;
+    }
+
+    function validateC_password(){
+        let flag = true;
+      if (c_password.value === "") {
+        c_password.nextElementSibling.innerHTML = "confirm password is empty!"
+        flag = false;
+      } else if (password.value != c_password.value) {
+        c_password.nextElementSibling.innerHTML = "password does not match";
+        flag = false;
+      } else {
+        flag = true;
+        c_password.nextElementSibling.innerHTML = "";
+      }
+
+      return flag;
+    }
+</script>
+
+</html>
